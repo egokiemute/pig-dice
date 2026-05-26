@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Pig Dice Game</title>
+</head>
+
+<body data-theme="light">
+
+  <!-- Floating top-right controls -->
+  <div class="floating-controls">
+    <button class="icon-btn" id="btnTheme" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+    <button class="icon-btn" id="btnStatsToggle" aria-label="View statistics" title="Statistics">📊</button>
+  </div>
+
+  <!-- Start / New Game Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h1 class="modal-title">🎲 Pig Dice Game</h1>
+      <p class="modal-subtitle">Roll dice and bank points — first to the target wins!</p>
+      <div class="modal-fields">
+        <div class="field-group">
+          <label for="input--name0">Player 1 Name</label>
+          <input type="text" id="input--name0" placeholder="Player 1" maxlength="12" />
+        </div>
+        <div class="field-group">
+          <label for="input--name1">Player 2 Name</label>
+          <input type="text" id="input--name1" placeholder="Player 2" maxlength="12" />
+        </div>
+        <div class="field-group">
+          <label for="input--winscore">Target Score</label>
+          <select id="input--winscore">
+            <option value="50">50 points</option>
+            <option value="100" selected>100 points</option>
+            <option value="150">150 points</option>
+            <option value="200">200 points</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn--start" id="btnStart">🚀 Start Game</button>
+    </div>
+  </div>
+
+  <!-- Stats Slide-in Panel -->
+  <div class="stats-panel" id="statsPanel">
+    <div class="stats-inner">
+      <h2>📊 Statistics</h2>
+      <div id="statsContent" class="stats-content"></div>
+      <div class="stats-actions">
+        <button class="btn btn--sm" id="btnResetStats">🗑 Reset</button>
+        <button class="btn btn--sm" id="btnCloseStats">✕ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Game Board -->
+  <main>
+    <section class="player player--0 player--active">
+      <h2 class="name" id="name--0">Player 1</h2>
+      <p class="score" id="score--0">0</p>
+      <div class="current">
+        <p class="current-label">Current</p>
+        <p class="current-score" id="current--0">0</p>
+      </div>
+    </section>
+
+    <div class="center-panel">
+      <button class="btn btn--new" id="btnNew">🔄 New game</button>
+      <p class="target-label" id="targetLabel">First to 100 pts</p>
+      <img src="dice-5.png" alt="Playing dice" class="dice hidden" id="diceEl" />
+      <ul class="roll-log" id="rollLog" aria-label="Roll history"></ul>
+      <button class="btn btn--roll" id="btnRoll">🎲 Roll dice</button>
+      <button class="btn btn--hold" id="btnHold">📥 Hold</button>
+    </div>
+
+    <section class="player player--1">
+      <h2 class="name" id="name--1">Player 2</h2>
+      <p class="score" id="score--1">0</p>
+      <div class="current">
+        <p class="current-label">Current</p>
+        <p class="current-score" id="current--1">0</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Keyboard shortcut hints (desktop only) -->
+  <div class="keyboard-hints" aria-hidden="true">
+    <kbd>R</kbd> Roll &nbsp;
+    <kbd>H</kbd> Hold &nbsp;
+    <kbd>N</kbd> New game
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
