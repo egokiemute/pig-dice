@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/images/favicon.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.jpeg" />
+    <link rel="stylesheet" href="/assets/css/shared.css" />
+    <title>Settings — Pondice</title>
+  <!-- SEO -->
+  <meta name="description" content="Customise your Pondice experience — set your target score, toggle sound effects, background music, and dark mode." />
+  <meta name="keywords" content="pondice settings, game preferences" />
+  <meta name="author" content="Henry Ponda" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#6D8682" />
+  <link rel="canonical" href="https://pondice.com/settings/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pondice" />
+  <meta property="og:title" content="Settings — Pondice" />
+  <meta property="og:description" content="Customise your Pondice experience — set your target score, toggle sound effects, background music, and dark mode." />
+  <meta property="og:url" content="https://pondice.com/settings/" />
+  <meta property="og:image" content="https://pondice.com/assets/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Settings — Pondice" />
+  <meta name="twitter:description" content="Customise your Pondice experience — set your target score, toggle sound effects, background music, and dark mode." />
+  <meta name="twitter:image" content="https://pondice.com/assets/images/logo.png" />
+    <style>
+      .settings-layout {
+        max-width: 68rem;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .settings-section {
+        background: var(--card-bg);
+        border-radius: var(--radius-md);
+        padding: 3rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .settings-section__title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .settings-section__subtitle {
+        font-size: 1.4rem;
+        color: var(--text-secondary);
+        margin-bottom: 2.5rem;
+        line-height: 1.5;
+      }
+
+      /* Win score pill toggle */
+      .score-options {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .score-option {
+        display: none;
+      }
+
+      .score-option + label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2.5rem;
+        border: 2px solid var(--input-border);
+        border-radius: var(--radius-pill);
+        font-size: 1.6rem;
+        font-weight: 700;
+        cursor: pointer;
+        color: var(--text-secondary);
+        transition: all 0.2s;
+        background: var(--input-bg);
+        min-width: 10rem;
+      }
+
+      .score-option:checked + label {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      .score-option + label:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .score-option:checked + label:hover {
+        color: #fff;
+      }
+
+      /* Danger zone */
+      .danger-zone {
+        background: rgba(231, 76, 60, 0.06);
+        border: 2px solid rgba(231, 76, 60, 0.2);
+        border-radius: var(--radius-md);
+        padding: 3rem;
+      }
+
+      .danger-zone .settings-section__title {
+        color: var(--danger);
+      }
+
+      .saved-toast {
+        position: fixed;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(8rem);
+        background: #2ecc71;
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        padding: 1.1rem 2.8rem;
+        border-radius: var(--radius-pill);
+        box-shadow: var(--shadow-md);
+        opacity: 0;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+        z-index: 999;
+        pointer-events: none;
+      }
+
+      .saved-toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    </style>
+  </head>
+  <body data-theme="light">
+        <nav class="nav">
+      <a href="/" class="nav__logo">
+        <img src="/assets/images/logo.png" alt="Pondice logo" class="nav__logo-img" />
+        Pondice
+      </a>
+      <input type="checkbox" id="navToggle" class="nav__toggle" aria-label="Toggle menu" />
+      <label for="navToggle" class="nav__toggle-label" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+      <div class="nav__links">
+        <a href="/" class="nav__link">Home</a>
+
+        <div class="nav__dropdown">
+          <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+            About <span class="nav__chevron">▾</span>
+          </a>
+          <div class="nav__dropdown-menu" role="menu">
+            <a href="/project/" class="nav__dropdown-link">📖 The Project</a>
+            <a href="/about/" class="nav__dropdown-link">👤 The Developer</a>
+          </div>
+        </div>
+
+        <a href="/rules/" class="nav__link">How To Play</a>
+        <a href="/contact/" class="nav__link">Contact</a>
+        <div class="nav__dropdown">
+          <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true" aria-current="page">
+            More <span class="nav__chevron">▾</span>
+          </a>
+          <div class="nav__dropdown-menu" role="menu">
+            <a href="/statistics/" class="nav__dropdown-link">📊 Statistics</a>
+            <a href="/leaderboard/" class="nav__dropdown-link">🏆 Leaderboard</a>
+            <a href="/settings/" class="nav__dropdown-link" aria-current="page">⚙️ Settings</a>
+          </div>
+        </div>
+        <a href="/game/" class="nav__link nav__link--play">▶ Play</a>
+        <button class="nav__theme-btn" id="btnTheme" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <header class="page-header">
+        <h1 class="page-header__title">⚙️ Settings</h1>
+        <p class="page-header__subtitle">
+          Customise your game experience. Changes save instantly.
+        </p>
+      </header>
+
+      <div class="settings-layout">
+        <!-- Gameplay -->
+        <div class="settings-section">
+          <h2 class="settings-section__title">🎮 Gameplay</h2>
+          <p class="settings-section__subtitle">
+            Choose the default target score for new games. Players can still
+            change it in the game setup modal.
+          </p>
+
+          <div class="score-options">
+            <input type="radio" name="winScore" id="score25" class="score-option" value="25" />
+            <label for="score25">25 pts</label>
+
+            <input type="radio" name="winScore" id="score50" class="score-option" value="50" />
+            <label for="score50">50 pts</label>
+
+            <input type="radio" name="winScore" id="score100" class="score-option" value="100" />
+            <label for="score100">100 pts</label>
+          </div>
+        </div>
+
+        <!-- Preferences -->
+        <div class="settings-section">
+          <h2 class="settings-section__title">🎨 Preferences</h2>
+          <p class="settings-section__subtitle">
+            Theme and audio settings. These persist across all pages.
+          </p>
+
+          <div>
+            <div class="toggle-wrap">
+              <div class="toggle-label">
+                Dark Mode
+                <small>Switch between light and dark theme</small>
+              </div>
+              <label class="toggle" aria-label="Toggle dark mode">
+                <input type="checkbox" id="toggleDark" />
+                <span class="toggle__slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-wrap">
+              <div class="toggle-label">
+                Sound Effects
+                <small>Dice rolls, button clicks, and win chimes</small>
+              </div>
+              <label class="toggle" aria-label="Toggle sound effects">
+                <input type="checkbox" id="toggleSound" />
+                <span class="toggle__slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-wrap">
+              <div class="toggle-label">
+                Background Music
+                <small>Menu and game background tracks on the Play page</small>
+              </div>
+              <label class="toggle" aria-label="Toggle background music">
+                <input type="checkbox" id="toggleMusic" />
+                <span class="toggle__slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="danger-zone">
+          <h2 class="settings-section__title">⚠️ Danger Zone</h2>
+          <p
+            class="settings-section__subtitle"
+            style="color: var(--text-secondary)"
+          >
+            Permanently delete all game statistics and leaderboard data stored
+            in this browser. This cannot be undone.
+          </p>
+          <button class="btn btn--danger" id="btnResetAll">
+            🗑 Reset All Statistics &amp; Leaderboard
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save toast notification -->
+    <div class="saved-toast" id="savedToast">✓ Saved</div>
+
+    <footer class="footer">
+      🎲 Pondice &mdash; Built with HTML, CSS &amp; JavaScript
+    </footer>
+
+    <script src="/assets/js/storage.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/settings.js"></script>
+  </body>
+</html>

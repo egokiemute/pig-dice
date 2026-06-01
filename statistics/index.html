@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/images/favicon.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.jpeg" />
+    <link rel="stylesheet" href="/assets/css/shared.css" />
+    <title>Statistics — Pondice</title>
+  <!-- SEO -->
+  <meta name="description" content="View your Pondice game statistics including total games played, wins per player, and highest turn scores." />
+  <meta name="keywords" content="pondice statistics, game stats" />
+  <meta name="author" content="Henry Ponda" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#6D8682" />
+  <link rel="canonical" href="https://pondice.com/statistics/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pondice" />
+  <meta property="og:title" content="Statistics — Pondice" />
+  <meta property="og:description" content="View your Pondice game statistics including total games played, wins per player, and highest turn scores." />
+  <meta property="og:url" content="https://pondice.com/statistics/" />
+  <meta property="og:image" content="https://pondice.com/assets/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Statistics — Pondice" />
+  <meta name="twitter:description" content="View your Pondice game statistics including total games played, wins per player, and highest turn scores." />
+  <meta name="twitter:image" content="https://pondice.com/assets/images/logo.png" />
+  </head>
+  <body data-theme="light">
+        <nav class="nav">
+      <a href="/" class="nav__logo">
+        <img src="/assets/images/logo.png" alt="Pondice logo" class="nav__logo-img" />
+        Pondice
+      </a>
+      <input type="checkbox" id="navToggle" class="nav__toggle" aria-label="Toggle menu" />
+      <label for="navToggle" class="nav__toggle-label" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+      <div class="nav__links">
+        <a href="/" class="nav__link">Home</a>
+
+        <div class="nav__dropdown">
+          <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+            About <span class="nav__chevron">▾</span>
+          </a>
+          <div class="nav__dropdown-menu" role="menu">
+            <a href="/project/" class="nav__dropdown-link">📖 The Project</a>
+            <a href="/about/" class="nav__dropdown-link">👤 The Developer</a>
+          </div>
+        </div>
+
+        <a href="/rules/" class="nav__link">How To Play</a>
+        <a href="/contact/" class="nav__link">Contact</a>
+        <div class="nav__dropdown">
+          <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true" aria-current="page">
+            More <span class="nav__chevron">▾</span>
+          </a>
+          <div class="nav__dropdown-menu" role="menu">
+            <a href="/statistics/" class="nav__dropdown-link" aria-current="page">📊 Statistics</a>
+            <a href="/leaderboard/" class="nav__dropdown-link">🏆 Leaderboard</a>
+            <a href="/settings/" class="nav__dropdown-link">⚙️ Settings</a>
+          </div>
+        </div>
+        <a href="/game/" class="nav__link nav__link--play">▶ Play</a>
+        <button class="nav__theme-btn" id="btnTheme" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <header class="page-header">
+        <h1 class="page-header__title">📊 Statistics</h1>
+        <p class="page-header__subtitle">
+          Your complete gameplay history, saved in this browser.
+        </p>
+      </header>
+
+      <!-- Summary cards -->
+      <div class="grid-4" style="margin-bottom: 4rem" id="summaryCards">
+        <div class="stat-card">
+          <p class="stat-card__value" id="statGames">0</p>
+          <p class="stat-card__label">Games Played</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__value" id="statPlayers">0</p>
+          <p class="stat-card__label">Players Tracked</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__value" id="statHighTurn">0</p>
+          <p class="stat-card__label">Highest Turn Score</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__value" id="statTopWins">0</p>
+          <p class="stat-card__label">Most Wins (Single Player)</p>
+        </div>
+      </div>
+
+      <!-- Charts and table side by side -->
+      <div class="grid-2" style="margin-bottom: 4rem" id="chartsSection">
+        <!-- Bar chart -->
+        <div class="card" id="barChartCard">
+          <h2
+            style="
+              font-size: 2rem;
+              font-weight: 700;
+              margin-bottom: 2rem;
+              color: var(--text-primary);
+            "
+          >
+            Wins Per Player
+          </h2>
+          <div id="barChart"></div>
+        </div>
+
+        <!-- Wins table -->
+        <div class="card">
+          <h2
+            style="
+              font-size: 2rem;
+              font-weight: 700;
+              margin-bottom: 2rem;
+              color: var(--text-primary);
+            "
+          >
+            Win Breakdown
+          </h2>
+          <div class="table-wrap">
+            <table class="data-table" id="statsTable">
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th>Wins</th>
+                  <th>Games</th>
+                  <th>Win Rate</th>
+                </tr>
+              </thead>
+              <tbody id="statsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reset -->
+      <div style="text-align: center; padding: 2rem 0 4rem">
+        <button class="btn btn--danger" id="btnReset" style="margin: 0 auto">
+          🗑 Reset All Statistics
+        </button>
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state hidden" id="emptyState">
+        <div class="empty-state__icon">🎲</div>
+        <h2 class="empty-state__title">No data yet</h2>
+        <p class="empty-state__text">
+          Play some games and your statistics will appear here automatically.
+        </p>
+        <a href="/game/" class="btn btn--primary mt-2">▶ Start Playing</a>
+      </div>
+    </div>
+
+    <footer class="footer">
+      🎲 Pondice &mdash; Built with HTML, CSS &amp; JavaScript
+    </footer>
+
+    <script src="/assets/js/storage.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/statistics.js"></script>
+  </body>
+</html>

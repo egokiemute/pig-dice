@@ -1,99 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Pig Dice Game</title>
-</head>
+  <link rel="icon" href="/assets/images/favicon.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.jpeg" />
+  <link rel="stylesheet" href="/assets/css/shared.css" />
+  <title>Pondice — Roll. Hold. Win.</title>
+  <!-- SEO -->
+  <meta name="description" content="Pondice is a fun two-player dice game built with HTML, CSS, and JavaScript. Roll the dice, build your score, and be the first to reach the target." />
+  <meta name="keywords" content="pondice, dice game, two player game, pig dice, browser game, HTML CSS JavaScript, Henry Ponda" />
+  <meta name="author" content="Henry Ponda" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#6D8682" />
+  <link rel="canonical" href="https://pondice.com/" />
 
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pondice" />
+  <meta property="og:title" content="Pondice — Roll. Hold. Win." />
+  <meta property="og:description" content="Pondice is a fun two-player dice game built with HTML, CSS, and JavaScript. Roll the dice, build your score, and be the first to reach the target." />
+  <meta property="og:url" content="https://pondice.com/" />
+  <meta property="og:image" content="https://pondice.com/assets/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pondice — Roll. Hold. Win." />
+  <meta name="twitter:description" content="Pondice is a fun two-player dice game built with HTML, CSS, and JavaScript. Roll the dice, build your score, and be the first to reach the target." />
+  <meta name="twitter:image" content="https://pondice.com/assets/images/logo.png" />
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pondice",
+    "url": "https://pondice.com",
+    "description": "A fun two-player dice game built with HTML, CSS, and JavaScript.",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any",
+    "author": {
+      "@type": "Person",
+      "name": "Henry Ponda",
+      "url": "https://pondice.com/about/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <style>
+    /* ===== HOME PAGE STYLES ===== */
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 2rem;
+      padding: 4rem 2rem;
+    }
+
+    .hero__dice {
+      font-size: clamp(6rem, 10vw, 9rem);
+      animation: diceSpin 6s ease-in-out infinite;
+      display: block;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+    }
+
+    @keyframes diceSpin {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      20% { transform: rotate(-15deg) scale(1.05); }
+      40% { transform: rotate(15deg) scale(1.08); }
+      60% { transform: rotate(-8deg) scale(1.05); }
+      80% { transform: rotate(0deg) scale(1); }
+    }
+
+    .hero__title {
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .hero__tagline {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      color: rgba(255,255,255,0.75);
+      max-width: 55rem;
+      line-height: 1.6;
+    }
+
+    .hero__ctas {
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Features section */
+    .features {
+      padding: 5rem 3rem;
+      max-width: 120rem;
+      margin: 0 auto;
+    }
+
+    .features__heading {
+      text-align: center;
+      font-size: clamp(2.4rem, 4vw, 3.5rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 3rem;
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding: 2.5rem 3rem;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .stats-strip__item {
+      text-align: center;
+    }
+
+    .stats-strip__value {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      display: block;
+    }
+
+    .stats-strip__label {
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.65);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 600px) {
+      .features { padding: 3rem 1.5rem; }
+      .stats-strip { gap: 2.5rem; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
 <body data-theme="light">
 
-  <!-- Floating top-right controls -->
-  <div class="floating-controls">
-    <button class="icon-btn" id="btnTheme" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
-    <button class="icon-btn" id="btnStatsToggle" aria-label="View statistics" title="Statistics">📊</button>
-  </div>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="/" class="nav__logo">
+      <img src="/assets/images/logo.png" alt="Pondice logo" class="nav__logo-img" />
+      Pondice
+    </a>
+    <input type="checkbox" id="navToggle" class="nav__toggle" aria-label="Toggle menu" />
+    <label for="navToggle" class="nav__toggle-label" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="nav__links">
+      <a href="/" class="nav__link" aria-current="page">Home</a>
 
-  <!-- Start / New Game Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <h1 class="modal-title">🎲 Pig Dice Game</h1>
-      <p class="modal-subtitle">Roll dice and bank points — first to the target wins!</p>
-      <div class="modal-fields">
-        <div class="field-group">
-          <label for="input--name0">Player 1 Name</label>
-          <input type="text" id="input--name0" placeholder="Player 1" maxlength="12" />
-        </div>
-        <div class="field-group">
-          <label for="input--name1">Player 2 Name</label>
-          <input type="text" id="input--name1" placeholder="Player 2" maxlength="12" />
-        </div>
-        <div class="field-group">
-          <label for="input--winscore">Target Score</label>
-          <select id="input--winscore">
-            <option value="50">50 points</option>
-            <option value="100" selected>100 points</option>
-            <option value="150">150 points</option>
-            <option value="200">200 points</option>
-          </select>
+      <div class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+          About <span class="nav__chevron">▾</span>
+        </a>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/project/" class="nav__dropdown-link">📖 The Project</a>
+          <a href="/about/" class="nav__dropdown-link">👤 The Developer</a>
         </div>
       </div>
-      <button class="btn btn--start" id="btnStart">🚀 Start Game</button>
+
+      <a href="/rules/" class="nav__link">How To Play</a>
+      <a href="/contact/" class="nav__link">Contact</a>
+      <div class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+          More <span class="nav__chevron">▾</span>
+        </a>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/statistics/" class="nav__dropdown-link">📊 Statistics</a>
+          <a href="/leaderboard/" class="nav__dropdown-link">🏆 Leaderboard</a>
+          <a href="/settings/" class="nav__dropdown-link">⚙️ Settings</a>
+        </div>
+      </div>
+      <a href="/game/" class="nav__link nav__link--play">▶ Play</a>
+      <button class="nav__theme-btn" id="btnTheme" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <span class="hero__dice" aria-hidden="true">🎲</span>
+    <h1 class="hero__title">Pondice</h1>
+    <p class="hero__tagline">
+      Roll the dice, build your score, and hold at the right moment.
+      First player to reach the target wins!
+    </p>
+    <div class="hero__ctas">
+      <a href="/game/" class="btn btn--primary btn--lg">▶ Play Now</a>
+      <a href="/rules/" class="btn btn--ghost btn--lg">📖 How to Play</a>
+    </div>
+  </section>
+
+  <!-- Live Stats Strip -->
+  <div class="stats-strip" id="statsStrip">
+    <div class="stats-strip__item">
+      <span class="stats-strip__value" id="stripGames">0</span>
+      <span class="stats-strip__label">Games Played</span>
+    </div>
+    <div class="stats-strip__item">
+      <span class="stats-strip__value" id="stripTopPlayer">—</span>
+      <span class="stats-strip__label">Top Player</span>
+    </div>
+    <div class="stats-strip__item">
+      <span class="stats-strip__value" id="stripHighScore">0</span>
+      <span class="stats-strip__label">Highest Turn</span>
     </div>
   </div>
 
-  <!-- Stats Slide-in Panel -->
-  <div class="stats-panel" id="statsPanel">
-    <div class="stats-inner">
-      <h2>📊 Statistics</h2>
-      <div id="statsContent" class="stats-content"></div>
-      <div class="stats-actions">
-        <button class="btn btn--sm" id="btnResetStats">🗑 Reset</button>
-        <button class="btn btn--sm" id="btnCloseStats">✕ Close</button>
+  <!-- Features Grid -->
+  <section class="features">
+    <h2 class="features__heading">Why You'll Love It</h2>
+    <div class="grid-3">
+      <div class="card">
+        <span class="card__icon">👥</span>
+        <h3 class="card__title">Two Player</h3>
+        <p class="card__text">Compete head-to-head with a friend. Set custom names and choose your avatar before the game starts.</p>
+      </div>
+      <div class="card">
+        <span class="card__icon">📊</span>
+        <h3 class="card__title">Stats Tracking</h3>
+        <p class="card__text">Every game is recorded. View wins, win rates, and the highest single-turn score on the Statistics page.</p>
+      </div>
+      <div class="card">
+        <span class="card__icon">🏆</span>
+        <h3 class="card__title">Leaderboard</h3>
+        <p class="card__text">All-time rankings saved in your browser. Climb the podium and prove you're the best dice roller.</p>
+      </div>
+      <div class="card">
+        <span class="card__icon">🌙</span>
+        <h3 class="card__title">Dark Mode</h3>
+        <p class="card__text">Easy on the eyes. Toggle between light and dark themes — your preference is saved automatically.</p>
+      </div>
+      <div class="card">
+        <span class="card__icon">🎵</span>
+        <h3 class="card__title">Sound Effects</h3>
+        <p class="card__text">Satisfying audio feedback on every roll, a buzz when you lose your turn, and a victory chime when you win.</p>
+      </div>
+      <div class="card">
+        <span class="card__icon">📱</span>
+        <h3 class="card__title">Fully Responsive</h3>
+        <p class="card__text">Plays perfectly on phones, tablets, and desktops. Use keyboard shortcuts R, H, N for even faster play.</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Main Game Board -->
-  <main>
-    <section class="player player--0 player--active">
-      <h2 class="name" id="name--0">Player 1</h2>
-      <p class="score" id="score--0">0</p>
-      <div class="current">
-        <p class="current-label">Current</p>
-        <p class="current-score" id="current--0">0</p>
-      </div>
-    </section>
+  <!-- Footer -->
+  <footer class="footer">
+    🎲 Pondice &mdash; Built with HTML, CSS &amp; JavaScript
+  </footer>
 
-    <div class="center-panel">
-      <button class="btn btn--new" id="btnNew">🔄 New game</button>
-      <p class="target-label" id="targetLabel">First to 100 pts</p>
-      <img src="dice-5.png" alt="Playing dice" class="dice hidden" id="diceEl" />
-      <ul class="roll-log" id="rollLog" aria-label="Roll history"></ul>
-      <button class="btn btn--roll" id="btnRoll">🎲 Roll dice</button>
-      <button class="btn btn--hold" id="btnHold">📥 Hold</button>
-    </div>
-
-    <section class="player player--1">
-      <h2 class="name" id="name--1">Player 2</h2>
-      <p class="score" id="score--1">0</p>
-      <div class="current">
-        <p class="current-label">Current</p>
-        <p class="current-score" id="current--1">0</p>
-      </div>
-    </section>
-  </main>
-
-  <!-- Keyboard shortcut hints (desktop only) -->
-  <div class="keyboard-hints" aria-hidden="true">
-    <kbd>R</kbd> Roll &nbsp;
-    <kbd>H</kbd> Hold &nbsp;
-    <kbd>N</kbd> New game
-  </div>
-
-  <script src="script.js"></script>
+  <script src="/assets/js/storage.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script>
+    // Populate live stats strip from localStorage
+    const stats = getStats();
+    const lb = getLeaderboard();
+    document.getElementById('stripGames').textContent = stats.gamesPlayed;
+    document.getElementById('stripHighScore').textContent = stats.highestTurn;
+    document.getElementById('stripTopPlayer').textContent =
+      lb.length > 0 ? lb[0].name : '—';
+  </script>
 </body>
-
 </html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/images/favicon.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.jpeg" />
+  <link rel="stylesheet" href="/assets/css/shared.css" />
+  <title>The Project — Pondice</title>
+  <!-- SEO -->
+  <meta name="description" content="Pondice is a final Web Technologies project by Henry Ponda at Varna Free University — a dice game built for family, learning, and fun." />
+  <meta name="keywords" content="pondice project, web technologies, Varna Free University, Henry Ponda, dice game project, school project" />
+  <meta name="author" content="Henry Ponda" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#6D8682" />
+  <link rel="canonical" href="https://pondice.com/project/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pondice" />
+  <meta property="og:title" content="The Project — Pondice" />
+  <meta property="og:description" content="Pondice is a final Web Technologies project by Henry Ponda at Varna Free University — a dice game built for family, learning, and fun." />
+  <meta property="og:url" content="https://pondice.com/project/" />
+  <meta property="og:image" content="https://pondice.com/assets/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="The Project — Pondice" />
+  <meta name="twitter:description" content="Pondice is a final Web Technologies project by Henry Ponda at Varna Free University — a dice game built for family, learning, and fun." />
+  <meta name="twitter:image" content="https://pondice.com/assets/images/logo.png" />
+  <style>
+    .project-hero {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 4.5rem;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .project-hero__name-badge {
+      text-align: center;
+    }
+
+    .project-hero__dice {
+      font-size: 8rem;
+      display: block;
+      margin-bottom: 1.6rem;
+      animation: dicePulse 3s ease-in-out infinite;
+    }
+
+    @keyframes dicePulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.08) rotate(8deg); }
+    }
+
+    .project-hero__game-name {
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-hero__tagline {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+
+    .project-hero__body {}
+    .project-hero__title {
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 1.6rem;
+    }
+
+    .project-hero__text {
+      font-size: 1.6rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.4rem;
+    }
+
+    /* Course info */
+    .course-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 3rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 4rem;
+      border-left: 5px solid var(--accent);
+    }
+
+    .course-card__title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .course-card__name {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .course-card__meta {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Quote highlight */
+    .quote-block {
+      background: var(--card-glass);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-md);
+      padding: 3.5rem 4rem;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .quote-block::before {
+      content: '"';
+      font-size: 10rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.15);
+      position: absolute;
+      top: -2rem;
+      left: 2rem;
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+
+    .quote-block__text {
+      font-size: clamp(1.6rem, 2.5vw, 2rem);
+      color: var(--text-light);
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-block__author {
+      font-size: 1.4rem;
+      color: var(--text-light-muted);
+      margin-top: 1.4rem;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Name meaning */
+    .name-breakdown {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 3rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+
+    .name-breakdown__title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2.5rem;
+    }
+
+    .name-formula {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .name-part {
+      text-align: center;
+    }
+
+    .name-part__word {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      display: block;
+    }
+
+    .name-part__label {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-top: 0.4rem;
+    }
+
+    .name-plus, .name-equals {
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 300;
+      color: var(--text-secondary);
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .project-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 3rem;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .project-hero { padding: 2rem; }
+      .quote-block { padding: 2.5rem 2rem; }
+      .quote-block::before { font-size: 7rem; left: 1rem; top: -1rem; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <nav class="nav">
+    <a href="/" class="nav__logo">
+      <img src="/assets/images/logo.png" alt="Pondice logo" class="nav__logo-img" />
+      Pondice
+    </a>
+    <input type="checkbox" id="navToggle" class="nav__toggle" aria-label="Toggle menu" />
+    <label for="navToggle" class="nav__toggle-label" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="nav__links">
+      <a href="/" class="nav__link">Home</a>
+
+      <div class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true" aria-current="page">
+          About <span class="nav__chevron">▾</span>
+        </a>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/project/" class="nav__dropdown-link" aria-current="page">📖 The Project</a>
+          <a href="/about/" class="nav__dropdown-link">👤 The Developer</a>
+        </div>
+      </div>
+
+      <a href="/rules/" class="nav__link">How To Play</a>
+      <a href="/contact/" class="nav__link">Contact</a>
+      <div class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+          More <span class="nav__chevron">▾</span>
+        </a>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/statistics/" class="nav__dropdown-link">📊 Statistics</a>
+          <a href="/leaderboard/" class="nav__dropdown-link">🏆 Leaderboard</a>
+          <a href="/settings/" class="nav__dropdown-link">⚙️ Settings</a>
+        </div>
+      </div>
+      <a href="/game/" class="nav__link nav__link--play">▶ Play</a>
+      <button class="nav__theme-btn" id="btnTheme" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <header class="page-header">
+      <h1 class="page-header__title">The Project</h1>
+      <p class="page-header__subtitle">A dice game built with purpose — for family, learning, and fun.</p>
+    </header>
+
+    <!-- Hero intro -->
+    <div class="project-hero">
+      <div class="project-hero__name-badge">
+        <span class="project-hero__dice" aria-hidden="true">🎲</span>
+        <p class="project-hero__game-name">Pondice</p>
+        <p class="project-hero__tagline">Roll · Hold · Win</p>
+      </div>
+      <div class="project-hero__body">
+        <h2 class="project-hero__title">What is Pondice?</h2>
+        <p class="project-hero__text">
+          Pondice is a simple and engaging dice game developed as a final project for the course
+          <strong>Web Technologies</strong> under the guidance of Prof. Boyka Gradinarova and
+          Assist. Madlen Stoycheva. The game was built using HTML, CSS, and JavaScript, showcasing
+          core web development concepts such as user interaction, game logic, responsive design,
+          and dynamic content manipulation.
+        </p>
+        <p class="project-hero__text">
+          More than just a course requirement, Pondice was inspired by family. My grandmother once
+          mentioned that she wanted a fun way to improve her confidence with numbers while becoming
+          more comfortable with technology. Designed so she and my niece could enjoy playing
+          together on an iPad — learning and entertainment going hand in hand.
+        </p>
+      </div>
+    </div>
+
+    <!-- Name meaning -->
+    <div class="name-breakdown">
+      <h2 class="name-breakdown__title">Where does the name come from?</h2>
+      <div class="name-formula">
+        <div class="name-part">
+          <span class="name-part__word">Ponda</span>
+          <p class="name-part__label">My surname</p>
+        </div>
+        <span class="name-plus">+</span>
+        <div class="name-part">
+          <span class="name-part__word">dice</span>
+          <p class="name-part__label">The game element</p>
+        </div>
+        <span class="name-equals">=</span>
+        <div class="name-part">
+          <span class="name-part__word" style="color: var(--text-primary);">Pondice</span>
+          <p class="name-part__label">A unique identity</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course Info -->
+    <div class="course-card">
+      <p class="course-card__title">Academic Context</p>
+      <p class="course-card__name">Web Technologies</p>
+      <p class="course-card__meta">
+        Guided by <strong>Prof. Boyka Gradinarova</strong> and <strong>Assist. Madlen Stoycheva</strong><br />
+        Developed by: <strong>Henry Ponda</strong> &mdash; Final Project Submission
+      </p>
+    </div>
+
+    <!-- Technologies -->
+    <h2 style="font-size: clamp(2.4rem,4vw,3.2rem); font-weight:800; color:#fff; margin-bottom:2.5rem; text-align:center;">
+      Built With
+    </h2>
+    <div class="grid-3" style="margin-bottom: 4rem;">
+      <div class="card" style="text-align:center;">
+        <span class="card__icon">🌐</span>
+        <h3 class="card__title">HTML5</h3>
+        <p class="card__text">Semantic markup, accessibility attributes, multi-page structure with folder routing.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="card__icon">🎨</span>
+        <h3 class="card__title">CSS3</h3>
+        <p class="card__text">Custom properties, Flexbox, Grid, keyframe animations, dark mode, responsive design.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="card__icon">⚡</span>
+        <h3 class="card__title">JavaScript</h3>
+        <p class="card__text">Game logic, DOM manipulation, Web Audio API, localStorage for scores and settings.</p>
+      </div>
+    </div>
+
+    <!-- Meaningful quote -->
+    <div class="quote-block">
+      <p class="quote-block__text">
+        This project shows not only my technical skills in web development but also my belief
+        that technology can be used to bring people together, encourage learning, and create
+        enjoyable experiences for all ages.
+      </p>
+      <p class="quote-block__author">— Henry Ponda, Developer</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <a href="/game/" class="btn btn--primary btn--lg">▶ Play Pondice</a>
+    </div>
+  </div>
+
+  <footer class="footer">🎲 Pondice &mdash; Built with HTML, CSS &amp; JavaScript</footer>
+
+  <script src="/assets/js/storage.js"></script>
+  <script src="/assets/js/theme.js"></script>
+</body>
+</html>

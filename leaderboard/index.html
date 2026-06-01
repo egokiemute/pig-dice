@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/images/favicon.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.jpeg" />
+    <link rel="stylesheet" href="/assets/css/shared.css" />
+    <title>Leaderboard — Pondice</title>
+  <!-- SEO -->
+  <meta name="description" content="The Pondice all-time leaderboard — top players ranked by wins, games played, and win rate." />
+  <meta name="keywords" content="pondice leaderboard, top players, dice game ranking" />
+  <meta name="author" content="Henry Ponda" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#6D8682" />
+  <link rel="canonical" href="https://pondice.com/leaderboard/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pondice" />
+  <meta property="og:title" content="Leaderboard — Pondice" />
+  <meta property="og:description" content="The Pondice all-time leaderboard — top players ranked by wins, games played, and win rate." />
+  <meta property="og:url" content="https://pondice.com/leaderboard/" />
+  <meta property="og:image" content="https://pondice.com/assets/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Leaderboard — Pondice" />
+  <meta name="twitter:description" content="The Pondice all-time leaderboard — top players ranked by wins, games played, and win rate." />
+  <meta name="twitter:image" content="https://pondice.com/assets/images/logo.png" />
+    <style>
+      /* Podium */
+      .podium {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 5rem;
+      }
+
+      .podium-slot {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .podium-slot__avatar {
+        font-size: 3.6rem;
+        line-height: 1;
+      }
+      .podium-slot__name {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #fff;
+        text-align: center;
+        max-width: 12rem;
+        word-break: break-word;
+      }
+
+      .podium-slot__wins {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+      }
+
+      .podium-slot__block {
+        width: 12rem;
+        border-radius: 1rem 1rem 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+      }
+
+      .podium-slot--1st .podium-slot__block {
+        background: #ffd700;
+        height: 14rem;
+      }
+      .podium-slot--2nd .podium-slot__block {
+        background: #c0c0c0;
+        height: 10rem;
+      }
+      .podium-slot--3rd .podium-slot__block {
+        background: #cd7f32;
+        height: 8rem;
+      }
+
+      .podium-slot--1st .podium-slot__name {
+        font-size: 1.9rem;
+      }
+
+      /* Full table */
+      .rank-badge {
+        font-weight: 800;
+        font-size: 1.6rem;
+        color: var(--accent);
+        min-width: 3.5rem;
+      }
+
+      @media (max-width: 600px) {
+        .podium-slot__block {
+          width: 9rem;
+        }
+        .podium-slot--1st .podium-slot__block {
+          height: 10rem;
+        }
+        .podium-slot--2nd .podium-slot__block {
+          height: 7rem;
+        }
+        .podium-slot--3rd .podium-slot__block {
+          height: 5.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body data-theme="light">
+        <nav class="nav">
+      <a href="/" class="nav__logo">
+        <img src="/assets/images/logo.png" alt="Pondice logo" class="nav__logo-img" />
+        Pondice
+      </a>
+      <input type="checkbox" id="navToggle" class="nav__toggle" aria-label="Toggle menu" />
+      <label for="navToggle" class="nav__toggle-label" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+      <div class="nav__links">
+        <a href="/" class="nav__link">Home</a>
+
+        <div class="nav__dropdown">
+          <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+            About <span class="nav__chevron">▾</span>
+          </a>
+          <div class="nav__dropdown-menu" role="menu">
+            <a href="/project/" class="nav__dropdown-link">📖 The Project</a>
+            <a href="/about/" class="nav__dropdown-link">👤 The Developer</a>
+          </div>
+        </div>
+
+        <a href="/rules/" class="nav__link">How To Play</a>
+        <a href="/contact/" class="nav__link">Contact</a>
+        <div class="nav__dropdown">
+          <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true" aria-current="page">
+            More <span class="nav__chevron">▾</span>
+          </a>
+          <div class="nav__dropdown-menu" role="menu">
+            <a href="/statistics/" class="nav__dropdown-link">📊 Statistics</a>
+            <a href="/leaderboard/" class="nav__dropdown-link" aria-current="page">🏆 Leaderboard</a>
+            <a href="/settings/" class="nav__dropdown-link">⚙️ Settings</a>
+          </div>
+        </div>
+        <a href="/game/" class="nav__link nav__link--play">▶ Play</a>
+        <button class="nav__theme-btn" id="btnTheme" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <header class="page-header">
+        <h1 class="page-header__title">🏆 Leaderboard</h1>
+        <p class="page-header__subtitle">
+          All-time rankings saved in this browser.
+        </p>
+      </header>
+
+      <!-- Podium -->
+      <div class="podium" id="podium"></div>
+
+      <!-- Full Ranking Table -->
+      <div class="card" id="tableCard">
+        <h2
+          style="
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+          "
+        >
+          Full Rankings
+        </h2>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Wins</th>
+                <th>Games</th>
+                <th>Win Rate</th>
+              </tr>
+            </thead>
+            <tbody id="lbTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state hidden" id="emptyState">
+        <div class="empty-state__icon">🏆</div>
+        <h2 class="empty-state__title">No rankings yet</h2>
+        <p class="empty-state__text">
+          Play some games and the leaderboard will fill up automatically.
+        </p>
+        <a href="/game/" class="btn btn--primary mt-2">▶ Start Playing</a>
+      </div>
+    </div>
+
+    <footer class="footer">
+      🎲 Pondice &mdash; Built with HTML, CSS &amp; JavaScript
+    </footer>
+
+    <script src="/assets/js/storage.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/leaderboard.js"></script>
+  </body>
+</html>

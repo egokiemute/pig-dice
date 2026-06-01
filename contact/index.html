@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/images/favicon.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.jpeg" />
+    <link rel="stylesheet" href="/assets/css/shared.css" />
+    <title>Contact — Pondice</title>
+  <!-- SEO -->
+  <meta name="description" content="Send feedback, report a bug, or suggest a new feature for Pondice. We would love to hear from you." />
+  <meta name="keywords" content="contact pondice, feedback, bug report, feature request" />
+  <meta name="author" content="Henry Ponda" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#6D8682" />
+  <link rel="canonical" href="https://pondice.com/contact/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pondice" />
+  <meta property="og:title" content="Contact — Pondice" />
+  <meta property="og:description" content="Send feedback, report a bug, or suggest a new feature for Pondice. We would love to hear from you." />
+  <meta property="og:url" content="https://pondice.com/contact/" />
+  <meta property="og:image" content="https://pondice.com/assets/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Contact — Pondice" />
+  <meta name="twitter:description" content="Send feedback, report a bug, or suggest a new feature for Pondice. We would love to hear from you." />
+  <meta name="twitter:image" content="https://pondice.com/assets/images/logo.png" />
+    <style>
+      .contact-layout {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 3.5rem;
+        align-items: start;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .contact-info-card {
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(10px);
+        border-radius: var(--radius-md);
+        padding: 2.4rem;
+        color: var(--text-light);
+        display: flex;
+        align-items: flex-start;
+        gap: 1.4rem;
+      }
+
+      .contact-info-card__icon {
+        font-size: 2.6rem;
+        flex-shrink: 0;
+      }
+      .contact-info-card__title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 0.4rem;
+      }
+      .contact-info-card__text {
+        font-size: 1.4rem;
+        color: var(--text-light-muted);
+        line-height: 1.5;
+      }
+
+      .form-card {
+        background: var(--card-bg);
+        border-radius: var(--radius-md);
+        padding: 3.5rem;
+        box-shadow: var(--shadow-md);
+      }
+
+      .form-card__title {
+        font-size: 2.6rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 2.5rem;
+      }
+
+      .form-fields {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.6rem;
+      }
+
+      /* Success message */
+      .success-card {
+        text-align: center;
+        padding: 4rem;
+        animation: successPop 0.4s ease;
+      }
+
+      .success-card__icon {
+        font-size: 6rem;
+        display: block;
+        margin-bottom: 1.6rem;
+      }
+      .success-card__title {
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+      }
+      .success-card__text {
+        font-size: 1.6rem;
+        color: var(--text-secondary);
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+      }
+
+      @keyframes successPop {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .contact-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .form-card {
+          padding: 2.5rem 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body data-theme="light">
+        <nav class="nav">
+      <a href="/" class="nav__logo">
+        <img src="/assets/images/logo.png" alt="Pondice logo" class="nav__logo-img" />
+        Pondice
+      </a>
+      <input type="checkbox" id="navToggle" class="nav__toggle" aria-label="Toggle menu" />
+      <label for="navToggle" class="nav__toggle-label" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+      <div class="nav__links">
+        <a href="/" class="nav__link">Home</a>
+
+        <div class="nav__dropdown">
+          <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+            About <span class="nav__chevron">▾</span>
+          </a>
+          <div class="nav__dropdown-menu" role="menu">
+            <a href="/project/" class="nav__dropdown-link">📖 The Project</a>
+            <a href="/about/" class="nav__dropdown-link">👤 The Developer</a>
+          </div>
+        </div>
+
+        <a href="/rules/" class="nav__link">How To Play</a>
+        <a href="/contact/" class="nav__link" aria-current="page">Contact</a>
+        <a href="/game/" class="nav__link nav__link--play">▶ Play</a>
+        <button class="nav__theme-btn" id="btnTheme" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <header class="page-header">
+        <h1 class="page-header__title">💬 Feedback</h1>
+        <p class="page-header__subtitle">
+          Found a bug? Have a suggestion? We'd love to hear from you.
+        </p>
+      </header>
+
+      <div class="contact-layout">
+        <!-- Info sidebar -->
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">🐛</div>
+            <div>
+              <p class="contact-info-card__title">Report a Bug</p>
+              <p class="contact-info-card__text">
+                Something not working right? Tell us what happened and we'll
+                look into it.
+              </p>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">💡</div>
+            <div>
+              <p class="contact-info-card__title">Suggest a Feature</p>
+              <p class="contact-info-card__text">
+                Have an idea for making the game better? We'd love to hear your
+                suggestions.
+              </p>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-card__icon">⭐</div>
+            <div>
+              <p class="contact-info-card__title">Give Feedback</p>
+              <p class="contact-info-card__text">
+                Like the game? Tell us what you enjoyed or what could be
+                improved.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="form-card" id="formCard">
+          <h2 class="form-card__title">Send a Message</h2>
+
+          <form id="contactForm" novalidate>
+            <div class="form-fields">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="fieldName">Your Name *</label>
+                  <input
+                    class="form-input"
+                    type="text"
+                    id="fieldName"
+                    placeholder="e.g. Sarah"
+                    required
+                    minlength="2"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="fieldEmail"
+                    >Email Address *</label
+                  >
+                  <input
+                    class="form-input"
+                    type="email"
+                    id="fieldEmail"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="fieldSubject">Subject</label>
+                <select class="form-select" id="fieldSubject">
+                  <option value="">Select a subject…</option>
+                  <option value="bug">🐛 Bug Report</option>
+                  <option value="suggestion">💡 Suggestion</option>
+                  <option value="compliment">⭐ Compliment</option>
+                  <option value="other">💬 Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="fieldMessage">Message *</label>
+                <textarea
+                  class="form-textarea"
+                  id="fieldMessage"
+                  placeholder="Write your message here…"
+                  required
+                  minlength="10"
+                  rows="5"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn--primary"
+                style="align-self: flex-start; padding: 1.2rem 3.5rem"
+              >
+                📨 Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      🎲 Pondice &mdash; Built with HTML, CSS &amp; JavaScript
+    </footer>
+
+    <script src="/assets/js/storage.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("fieldName").value.trim();
+          const email = document.getElementById("fieldEmail").value.trim();
+          const message = document.getElementById("fieldMessage").value.trim();
+
+          // Simple validation
+          if (!name || name.length < 2) {
+            document.getElementById("fieldName").focus();
+            return;
+          }
+          if (!email || !email.includes("@")) {
+            document.getElementById("fieldEmail").focus();
+            return;
+          }
+          if (!message || message.length < 10) {
+            document.getElementById("fieldMessage").focus();
+            return;
+          }
+
+          // Show success state
+          const card = document.getElementById("formCard");
+          card.innerHTML = `
+        <div class="success-card">
+          <span class="success-card__icon">🎉</span>
+          <h2 class="success-card__title">Message Sent!</h2>
+          <p class="success-card__text">
+            Thanks, <strong>${name}</strong>! Your message has been received.<br>
+            We'll get back to you at <strong>${email}</strong> soon.
+          </p>
+          <a href="/game/" class="btn btn--primary">▶ Go Play</a>
+        </div>
+      `;
+        });
+    </script>
+  </body>
+</html>

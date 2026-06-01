@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/images/favicon.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.jpeg" />
+  <link rel="stylesheet" href="/assets/css/shared.css" />
+  <link rel="stylesheet" href="/assets/css/game.css" />
+  <title>Play — Pondice</title>
+  <!-- SEO -->
+  <meta name="description" content="Play Pondice — the two-player dice game. Choose your avatar, set a target score, and roll your way to victory." />
+  <meta name="keywords" content="play dice game, pondice game, online dice game, browser dice game" />
+  <meta name="author" content="Henry Ponda" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#6D8682" />
+  <link rel="canonical" href="https://pondice.com/game/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pondice" />
+  <meta property="og:title" content="Play Pondice — Two-Player Dice Game" />
+  <meta property="og:description" content="Play Pondice — the two-player dice game. Choose your avatar, set a target score, and roll your way to victory." />
+  <meta property="og:url" content="https://pondice.com/game/" />
+  <meta property="og:image" content="https://pondice.com/assets/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Play Pondice — Two-Player Dice Game" />
+  <meta name="twitter:description" content="Play Pondice — the two-player dice game. Choose your avatar, set a target score, and roll your way to victory." />
+  <meta name="twitter:image" content="https://pondice.com/assets/images/logo.png" />
+</head>
+<body class="game-body" data-theme="light">
+
+  <nav class="nav">
+    <a href="/" class="nav__logo">
+      <img src="/assets/images/logo.png" alt="Pondice logo" class="nav__logo-img" />
+      Pondice
+    </a>
+    <input type="checkbox" id="navToggle" class="nav__toggle" aria-label="Toggle menu" />
+    <label for="navToggle" class="nav__toggle-label" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="nav__links">
+      <a href="/" class="nav__link">Home</a>
+
+      <div class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+          About <span class="nav__chevron">▾</span>
+        </a>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/project/" class="nav__dropdown-link">📖 The Project</a>
+          <a href="/about/" class="nav__dropdown-link">👤 The Developer</a>
+        </div>
+      </div>
+
+      <a href="/rules/" class="nav__link">How To Play</a>
+      <a href="/contact/" class="nav__link">Contact</a>
+      <div class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+          More <span class="nav__chevron">▾</span>
+        </a>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/statistics/" class="nav__dropdown-link">📊 Statistics</a>
+          <a href="/leaderboard/" class="nav__dropdown-link">🏆 Leaderboard</a>
+          <a href="/settings/" class="nav__dropdown-link">⚙️ Settings</a>
+        </div>
+      </div>
+      <a href="/game/" class="nav__link nav__link--play" aria-current="page">▶ Play</a>
+      <button class="nav__theme-btn" id="btnTheme" aria-label="Toggle dark mode">🌙</button>
+      <button class="nav__theme-btn" id="btnMusic" aria-label="Toggle music">🎵</button>
+    </div>
+  </nav>
+
+  <!-- Setup Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h1 class="modal__title">🎲 New Game</h1>
+      <p class="modal__subtitle">Choose your avatar, enter names, and pick a target score.</p>
+
+      <div class="modal__fields">
+        <!-- Player 1 -->
+        <div class="avatar-row">
+          <span class="avatar-row__label">Player 1 Avatar</span>
+          <div class="avatar-picker" id="avatarPicker0">
+            <button class="avatar-btn selected" data-avatar="🦁" type="button">🦁</button>
+            <button class="avatar-btn" data-avatar="🐯" type="button">🐯</button>
+            <button class="avatar-btn" data-avatar="🐻" type="button">🐻</button>
+            <button class="avatar-btn" data-avatar="🦊" type="button">🦊</button>
+            <button class="avatar-btn" data-avatar="🐸" type="button">🐸</button>
+            <button class="avatar-btn" data-avatar="🐲" type="button">🐲</button>
+            <button class="avatar-btn" data-avatar="🦄" type="button">🦄</button>
+            <button class="avatar-btn" data-avatar="🤖" type="button">🤖</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inputName0">Player 1 Name</label>
+          <input class="form-input" type="text" id="inputName0" placeholder="Player 1" maxlength="12" />
+        </div>
+
+        <!-- Player 2 -->
+        <div class="avatar-row">
+          <span class="avatar-row__label">Player 2 Avatar</span>
+          <div class="avatar-picker" id="avatarPicker1">
+            <button class="avatar-btn" data-avatar="🦁" type="button">🦁</button>
+            <button class="avatar-btn" data-avatar="🐯" type="button">🐯</button>
+            <button class="avatar-btn" data-avatar="🐻" type="button">🐻</button>
+            <button class="avatar-btn selected" data-avatar="🦊" type="button">🦊</button>
+            <button class="avatar-btn" data-avatar="🐸" type="button">🐸</button>
+            <button class="avatar-btn" data-avatar="🐲" type="button">🐲</button>
+            <button class="avatar-btn" data-avatar="🦄" type="button">🦄</button>
+            <button class="avatar-btn" data-avatar="🤖" type="button">🤖</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inputName1">Player 2 Name</label>
+          <input class="form-input" type="text" id="inputName1" placeholder="Player 2" maxlength="12" />
+        </div>
+
+        <!-- Target Score -->
+        <div class="form-group">
+          <label class="form-label" for="inputWinScore">Target Score</label>
+          <select class="form-select" id="inputWinScore">
+            <option value="25">25 points</option>
+            <option value="50" selected>50 points</option>
+            <option value="100">100 points</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="modal__start-btn" id="btnStart">🚀 Start Game</button>
+    </div>
+  </div>
+
+  <!-- Game Board -->
+  <div class="game-wrapper">
+    <div class="board">
+      <section class="player player--0 player--active" id="player0El">
+        <div class="player__avatar" id="avatar0">🦁</div>
+        <h2 class="player__name" id="name0">Player 1</h2>
+        <p class="player__score" id="score0">0</p>
+        <div class="player__current">
+          <p class="player__current-label">Current</p>
+          <p class="player__current-score" id="current0">0</p>
+        </div>
+      </section>
+
+      <div class="center-panel">
+        <button class="game-btn" id="btnNew">🔄 New game</button>
+        <p class="center-panel__target" id="targetLabel">First to 50 pts</p>
+        <img src="/assets/images/dice-5.png" alt="Playing dice" class="dice hidden" id="diceEl" />
+        <ul class="roll-log" id="rollLog" aria-label="Roll history"></ul>
+        <button class="game-btn" id="btnRoll">🎲 Roll dice</button>
+        <button class="game-btn" id="btnHold">📥 Hold</button>
+      </div>
+
+      <section class="player player--1" id="player1El">
+        <div class="player__avatar" id="avatar1">🦊</div>
+        <h2 class="player__name" id="name1">Player 2</h2>
+        <p class="player__score" id="score1">0</p>
+        <div class="player__current">
+          <p class="player__current-label">Current</p>
+          <p class="player__current-score" id="current1">0</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="keyboard-hints" aria-hidden="true">
+    <span><kbd>R</kbd> Roll</span>
+    <span><kbd>H</kbd> Hold</span>
+    <span><kbd>N</kbd> New game</span>
+  </div>
+
+  <footer class="footer">🎲 Pondice &mdash; Built with HTML, CSS &amp; JavaScript</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="/assets/js/storage.js"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/music.js"></script>
+  <script src="/assets/js/game.js"></script>
+</body>
+</html>

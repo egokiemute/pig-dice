@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/images/favicon.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.jpeg" />
+  <link rel="stylesheet" href="/assets/css/shared.css" />
+  <title>The Developer — Pondice</title>
+  <!-- SEO -->
+  <meta name="description" content="Meet Henry Ponda — web developer, designer, and IT consultant. Founder of Ferndril Design Co. and member of YDSG, studying Informatics at Varna Free University." />
+  <meta name="keywords" content="Henry Ponda, web developer, Ferndril Design Co, YDSG, Varna Free University, IT consultant" />
+  <meta name="author" content="Henry Ponda" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#6D8682" />
+  <link rel="canonical" href="https://pondice.com/about/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Pondice" />
+  <meta property="og:title" content="Henry Ponda — Web Developer & Designer" />
+  <meta property="og:description" content="Meet Henry Ponda — web developer, designer, and IT consultant. Founder of Ferndril Design Co. and member of YDSG, studying Informatics at Varna Free University." />
+  <meta property="og:url" content="https://pondice.com/about/" />
+  <meta property="og:image" content="https://pondice.com/assets/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Henry Ponda — Web Developer & Designer" />
+  <meta name="twitter:description" content="Meet Henry Ponda — web developer, designer, and IT consultant. Founder of Ferndril Design Co. and member of YDSG, studying Informatics at Varna Free University." />
+  <meta name="twitter:image" content="https://pondice.com/assets/images/logo.png" />
+  <style>
+    .dev-hero {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 4rem;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 4rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .dev-hero__photo-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.6rem;
+    }
+
+    .dev-hero__photo {
+      width: 18rem;
+      height: 18rem;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      border: 4px solid var(--accent);
+    }
+
+    .dev-hero__photo-placeholder {
+      width: 18rem;
+      height: 18rem;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+      border: 4px solid var(--accent);
+    }
+
+    .dev-hero__name {
+      font-size: clamp(3rem, 5vw, 4.8rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+      line-height: 1.1;
+    }
+
+    .dev-hero__title {
+      font-size: 1.7rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .dev-hero__bio {
+      font-size: 1.6rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.4rem;
+    }
+
+    .affiliation-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 2.4rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .affiliation-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+    .affiliation-card__icon { font-size: 3.5rem; flex-shrink: 0; line-height: 1; }
+    .affiliation-card__name { font-size: 1.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.4rem; }
+    .affiliation-card__role { font-size: 1.4rem; font-weight: 600; color: var(--accent); margin-bottom: 0.8rem; }
+    .affiliation-card__text { font-size: 1.4rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.2rem; }
+
+    .affiliation-card__link {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-right: 1.2rem;
+    }
+    .affiliation-card__link:hover { border-color: var(--accent); }
+
+    .edu-card { background: var(--card-bg); border-radius: var(--radius-md); padding: 3rem; box-shadow: var(--shadow-sm); }
+
+    .edu-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--input-border);
+    }
+    .edu-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .edu-item:first-child { padding-top: 0; }
+
+    .edu-item__icon { font-size: 2.8rem; flex-shrink: 0; line-height: 1; }
+    .edu-item__degree { font-size: 1.7rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem; }
+    .edu-item__school { font-size: 1.5rem; color: var(--accent); font-weight: 600; margin-bottom: 0.2rem; }
+    .edu-item__status { font-size: 1.3rem; color: var(--text-secondary); }
+
+    @media (max-width: 900px) {
+      .dev-hero { grid-template-columns: 1fr; text-align: center; padding: 3rem; gap: 2.5rem; }
+      .dev-hero__photo-col { margin: 0 auto; }
+      .dev-hero__photo, .dev-hero__photo-placeholder { width: 14rem; height: 14rem; }
+    }
+
+    @media (max-width: 600px) {
+      .dev-hero { padding: 2rem; }
+      .affiliation-card { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <nav class="nav">
+    <a href="/" class="nav__logo">
+      <img src="/assets/images/logo.png" alt="Pondice logo" class="nav__logo-img" />
+      Pondice
+    </a>
+    <input type="checkbox" id="navToggle" class="nav__toggle" aria-label="Toggle menu" />
+    <label for="navToggle" class="nav__toggle-label" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="nav__links">
+      <a href="/" class="nav__link">Home</a>
+
+      <div class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true" aria-current="page">
+          About <span class="nav__chevron">▾</span>
+        </a>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/project/" class="nav__dropdown-link">📖 The Project</a>
+          <a href="/about/" class="nav__dropdown-link" aria-current="page">👤 The Developer</a>
+        </div>
+      </div>
+
+      <a href="/rules/" class="nav__link">How To Play</a>
+      <a href="/contact/" class="nav__link">Contact</a>
+      <div class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+          More <span class="nav__chevron">▾</span>
+        </a>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/statistics/" class="nav__dropdown-link">📊 Statistics</a>
+          <a href="/leaderboard/" class="nav__dropdown-link">🏆 Leaderboard</a>
+          <a href="/settings/" class="nav__dropdown-link">⚙️ Settings</a>
+        </div>
+      </div>
+      <a href="/game/" class="nav__link nav__link--play">▶ Play</a>
+      <button class="nav__theme-btn" id="btnTheme" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <header class="page-header">
+      <h1 class="page-header__title">The Developer</h1>
+      <p class="page-header__subtitle">The person behind Pondice.</p>
+    </header>
+
+    <div class="dev-hero">
+      <div class="dev-hero__photo-col">
+        <img
+          src="/assets/images/henry.png"
+          alt="Portrait of Henry Ponda"
+          class="dev-hero__photo"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="dev-hero__photo-placeholder">👨‍💻</div>
+      </div>
+      <div>
+        <h2 class="dev-hero__name">Henry Ponda</h2>
+        <p class="dev-hero__title">Web Developer &middot; Designer &middot; IT Consultant</p>
+        <p class="dev-hero__bio">
+          Henry Ponda is a web developer, designer, and IT consultant with a drive for creating
+          meaningful digital experiences. He holds an Associate Degree in Computer Science and is
+          currently studying Informatics at Varna Free University.
+        </p>
+        <p class="dev-hero__bio">
+          He is the founder and lead designer of <strong>Ferndril Design Co.</strong>, where he
+          helps businesses build strong brands and websites. Henry is also a member of
+          <strong>YDSG</strong>, a local NGO in Varna focused on sustainability, climate action,
+          and volunteering.
+        </p>
+        <p class="dev-hero__bio">
+          Pondice was created as part of his Web Technologies coursework and reflects his interest
+          in combining technology, learning, and fun.
+        </p>
+      </div>
+    </div>
+
+    <h2 style="font-size:clamp(2.4rem,4vw,3.2rem);font-weight:800;color:#fff;margin-bottom:2.5rem;text-align:center;">Affiliations</h2>
+    <div class="grid-2" style="margin-bottom: 4rem;">
+      <div class="affiliation-card">
+        <div class="affiliation-card__icon">🏢</div>
+        <div>
+          <h3 class="affiliation-card__name">Ferndril Design Co.</h3>
+          <p class="affiliation-card__role">Founder &amp; Lead Designer</p>
+          <p class="affiliation-card__text">
+            Helping businesses build strong brands and websites — combining design thinking with
+            technical execution to deliver digital solutions that work.
+          </p>
+          <a href="https://ferndril.com" target="_blank" rel="noopener noreferrer" class="affiliation-card__link">ferndril.com ↗</a>
+          <a href="https://ferndril.com/our-team" target="_blank" rel="noopener noreferrer" class="affiliation-card__link">Our Team ↗</a>
+        </div>
+      </div>
+
+      <div class="affiliation-card">
+        <div class="affiliation-card__icon">🌱</div>
+        <div>
+          <h3 class="affiliation-card__name">YDSG</h3>
+          <p class="affiliation-card__role">Member</p>
+          <p class="affiliation-card__text">
+            A local NGO in Varna focused on sustainability, climate action, and volunteering —
+            making a positive impact locally and globally.
+          </p>
+          <a href="https://ydsg.org" target="_blank" rel="noopener noreferrer" class="affiliation-card__link">ydsg.org ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="font-size:clamp(2.4rem,4vw,3.2rem);font-weight:800;color:#fff;margin-bottom:2.5rem;text-align:center;">Education</h2>
+    <div class="edu-card" style="margin-bottom: 4rem;">
+      <div class="edu-item">
+        <div class="edu-item__icon">🎓</div>
+        <div>
+          <p class="edu-item__degree">Associate Degree in Computer Science</p>
+          <p class="edu-item__school">Completed</p>
+          <p class="edu-item__status">Foundation in software development, networking, and computing fundamentals.</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-item__icon">📚</div>
+        <div>
+          <p class="edu-item__degree">Informatics — Bachelor's (in progress)</p>
+          <p class="edu-item__school">Varna Free University</p>
+          <p class="edu-item__status">Currently studying · Web Technologies, Data Structures, Software Engineering</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; padding: 2rem 0 4rem;">
+      <a href="/project/" class="btn btn--ghost btn--lg" style="margin-right:1.6rem;">📖 About the Project</a>
+      <a href="/game/" class="btn btn--primary btn--lg">▶ Play Pondice</a>
+    </div>
+  </div>
+
+  <footer class="footer">🎲 Pondice &mdash; Built with HTML, CSS &amp; JavaScript</footer>
+
+  <script src="/assets/js/storage.js"></script>
+  <script src="/assets/js/theme.js"></script>
+</body>
+</html>

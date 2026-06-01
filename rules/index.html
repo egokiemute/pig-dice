@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/images/favicon.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.jpeg" />
+  <link rel="stylesheet" href="/assets/css/shared.css" />
+  <title>How To Play — Pondice</title>
+  <!-- SEO -->
+  <meta name="description" content="Learn the rules of Pondice. Roll dice to accumulate points, hold to save your score, and be the first player to reach the target to win." />
+  <meta name="keywords" content="how to play pondice, pig dice rules, dice game rules, pondice tutorial" />
+  <meta name="author" content="Henry Ponda" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#6D8682" />
+  <link rel="canonical" href="https://pondice.com/rules/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pondice" />
+  <meta property="og:title" content="How To Play Pondice — Game Rules" />
+  <meta property="og:description" content="Learn the rules of Pondice. Roll dice to accumulate points, hold to save your score, and be the first player to reach the target to win." />
+  <meta property="og:url" content="https://pondice.com/rules/" />
+  <meta property="og:image" content="https://pondice.com/assets/images/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="How To Play Pondice — Game Rules" />
+  <meta name="twitter:description" content="Learn the rules of Pondice. Roll dice to accumulate points, hold to save your score, and be the first player to reach the target to win." />
+  <meta name="twitter:image" content="https://pondice.com/assets/images/logo.png" />
+  <style>
+    .rule-list { display: flex; flex-direction: column; gap: 1.6rem; }
+
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 2.4rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .rule-item__number {
+      font-size: 3.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 5rem;
+      text-align: center;
+    }
+
+    .rule-item__title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .rule-item__text {
+      font-size: 1.6rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Win score cards */
+    .win-score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .win-score-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 3rem 2rem;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      border-top: 4px solid var(--accent);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .win-score-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .win-score-card__points {
+      font-size: clamp(4rem, 7vw, 6.5rem);
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .win-score-card__label {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .win-score-card__desc {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-top: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .example-box {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 3rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .example-box__title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+    }
+
+    .example-steps { display: flex; flex-direction: column; gap: 1rem; }
+
+    .example-step {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      padding: 1.2rem 1.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 1.5rem;
+      background: var(--accent-light);
+    }
+
+    .example-step--danger { background: rgba(231, 76, 60, 0.1); }
+    .example-step--success { background: rgba(46, 204, 113, 0.1); }
+
+    .example-step__icon { font-size: 2rem; flex-shrink: 0; }
+    .example-step__text { color: var(--text-primary); line-height: 1.4; }
+    .example-step__text strong { font-weight: 700; }
+
+    @media (max-width: 600px) {
+      .rule-item { flex-direction: column; gap: 1rem; }
+      .rule-item__number { width: auto; font-size: 2.8rem; }
+      .win-score-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <nav class="nav">
+    <a href="/" class="nav__logo">
+      <img src="/assets/images/logo.png" alt="Pondice logo" class="nav__logo-img" />
+      Pondice
+    </a>
+    <input type="checkbox" id="navToggle" class="nav__toggle" aria-label="Toggle menu" />
+    <label for="navToggle" class="nav__toggle-label" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="nav__links">
+      <a href="/" class="nav__link">Home</a>
+
+      <div class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+          About <span class="nav__chevron">▾</span>
+        </a>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/project/" class="nav__dropdown-link">📖 The Project</a>
+          <a href="/about/" class="nav__dropdown-link">👤 The Developer</a>
+        </div>
+      </div>
+
+      <a href="/rules/" class="nav__link" aria-current="page">How To Play</a>
+      <a href="/contact/" class="nav__link">Contact</a>
+      <div class="nav__dropdown">
+        <a href="#" class="nav__link nav__dropdown-toggle" aria-haspopup="true">
+          More <span class="nav__chevron">▾</span>
+        </a>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/statistics/" class="nav__dropdown-link">📊 Statistics</a>
+          <a href="/leaderboard/" class="nav__dropdown-link">🏆 Leaderboard</a>
+          <a href="/settings/" class="nav__dropdown-link">⚙️ Settings</a>
+        </div>
+      </div>
+      <a href="/game/" class="nav__link nav__link--play">▶ Play</a>
+      <button class="nav__theme-btn" id="btnTheme" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <header class="page-header">
+      <h1 class="page-header__title">How To Play</h1>
+      <p class="page-header__subtitle">Pondice is a two-player dice game where players take turns rolling the dice to build their score.</p>
+    </header>
+
+    <!-- Rules -->
+    <section style="margin-bottom: 5rem;">
+      <div class="rule-list">
+        <div class="rule-item">
+          <div class="rule-item__number">1</div>
+          <div>
+            <h3 class="rule-item__title">🎲 Click Roll Dice to roll</h3>
+            <p class="rule-item__text">On your turn, click the <strong>Roll Dice</strong> button to roll the die. The result is added to your current turn score.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-item__number">2</div>
+          <div>
+            <h3 class="rule-item__title">➕ Continue rolling to increase your score</h3>
+            <p class="rule-item__text">You can keep rolling as many times as you like, adding each roll to your current score. The bigger the risk, the bigger the potential reward.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-item__number">3</div>
+          <div>
+            <h3 class="rule-item__title">📥 Click Hold to save your score</h3>
+            <p class="rule-item__text">When you're happy with your current score, click <strong>Hold</strong>. Your current turn score is added to your total score and your turn passes to the other player.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-item__number">4</div>
+          <div>
+            <h3 class="rule-item__title">🔁 Turn passes to the other player</h3>
+            <p class="rule-item__text">After you hold, your opponent takes their turn. Players alternate until one reaches the winning score.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-item__number">5</div>
+          <div>
+            <h3 class="rule-item__title">🏆 First to the winning score wins!</h3>
+            <p class="rule-item__text">The first player to reach or exceed the selected winning score is declared the winner. <strong>Watch out</strong> — rolling a <strong>1</strong> loses your entire current turn score and passes the turn!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Winning Scores -->
+    <section style="margin-bottom: 5rem;">
+      <h2 style="font-size:clamp(2.4rem,4vw,3.2rem);font-weight:800;color:#fff;margin-bottom:2.5rem;text-align:center;">
+        Winning Scores
+      </h2>
+      <p style="text-align:center;font-size:1.7rem;color:rgba(255,255,255,0.75);margin-bottom:3rem;">
+        Before starting a game, players choose a winning score. The first to reach it wins.
+      </p>
+      <div class="win-score-grid">
+        <div class="win-score-card">
+          <span class="win-score-card__points">25</span>
+          <p class="win-score-card__label">Points</p>
+          <p class="win-score-card__desc">Quick game · Great for beginners and younger players</p>
+        </div>
+        <div class="win-score-card">
+          <span class="win-score-card__points">50</span>
+          <p class="win-score-card__label">Points</p>
+          <p class="win-score-card__desc">Standard game · A balanced challenge for most players</p>
+        </div>
+        <div class="win-score-card">
+          <span class="win-score-card__points">100</span>
+          <p class="win-score-card__label">Points</p>
+          <p class="win-score-card__desc">Long game · For experienced players who enjoy strategy</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example Round -->
+    <section style="margin-bottom: 5rem;">
+      <div class="example-box">
+        <h2 class="example-box__title">📋 Example Turn</h2>
+        <div class="example-steps">
+          <div class="example-step">
+            <span class="example-step__icon">🎲</span>
+            <span class="example-step__text">Sarah rolls a <strong>4</strong> — current score: <strong>4</strong></span>
+          </div>
+          <div class="example-step">
+            <span class="example-step__icon">🎲</span>
+            <span class="example-step__text">Sarah rolls a <strong>6</strong> — current score: <strong>10</strong></span>
+          </div>
+          <div class="example-step">
+            <span class="example-step__icon">🎲</span>
+            <span class="example-step__text">Sarah rolls a <strong>3</strong> — current score: <strong>13</strong></span>
+          </div>
+          <div class="example-step example-step--success">
+            <span class="example-step__icon">📥</span>
+            <span class="example-step__text">Sarah <strong>holds</strong> — banks 13 points. Total is now <strong>13</strong>. Turn passes.</span>
+          </div>
+          <div class="example-step">
+            <span class="example-step__icon">🎲</span>
+            <span class="example-step__text">John rolls a <strong>5</strong> — current score: <strong>5</strong></span>
+          </div>
+          <div class="example-step example-step--danger">
+            <span class="example-step__icon">💥</span>
+            <span class="example-step__text">John rolls a <strong>1</strong> — current score wiped out! Turn passes back to Sarah.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div style="text-align:center; padding: 2rem 0 4rem;">
+      <a href="/game/" class="btn btn--primary btn--lg">▶ Play Pondice</a>
+    </div>
+  </div>
+
+  <footer class="footer">🎲 Pondice &mdash; Built with HTML, CSS &amp; JavaScript</footer>
+
+  <script src="/assets/js/storage.js"></script>
+  <script src="/assets/js/theme.js"></script>
+</body>
+</html>
