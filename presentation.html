@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pondice — Project Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Nunito+Sans:wght@400;600&display=swap" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:   #6D8682;
+      --olive:  #88996E;
+      --sage:   #BDD19E;
+      --blue:   #B1C9CA;
+      --cream:  #E4D2C0;
+      --brown:  #B89068;
+      --dark-teal: #2d4a47;
+      --text:   #1a1a1a;
+      --muted:  #555;
+      --light:  #f8f7f4;
+      --border: #e0ddd8;
+    }
+
+    html { font-size: 10pt; }
+
+    body {
+      font-family: 'Nunito Sans', 'Nunito', sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    /* ===== PAGE LAYOUT ===== */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 18mm 20mm;
+      background: #fff;
+    }
+
+    @media screen {
+      body { background: #d0cfc9; padding: 20px 0; }
+      .page {
+        box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+        margin: 0 auto 30px;
+      }
+      .page + .page { margin-top: 0; }
+    }
+
+    @media print {
+      html, body { background: #fff; }
+      .page { margin: 0; padding: 15mm 18mm; box-shadow: none; page-break-after: always; }
+      .page:last-child { page-break-after: auto; }
+      .no-break { page-break-inside: avoid; }
+    }
+
+    /* ===== COVER PAGE ===== */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 263mm;
+    }
+
+    .cover__top {
+      border-bottom: 3px solid var(--teal);
+      padding-bottom: 8mm;
+      margin-bottom: 10mm;
+    }
+
+    .cover__university {
+      font-size: 9pt;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 2mm;
+    }
+
+    .cover__course {
+      font-size: 9pt;
+      color: var(--muted);
+    }
+
+    .cover__hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12mm 0;
+    }
+
+    .cover__dice {
+      font-size: 52pt;
+      line-height: 1;
+      margin-bottom: 6mm;
+    }
+
+    .cover__title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 42pt;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 3mm;
+    }
+
+    .cover__subtitle {
+      font-size: 14pt;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10mm;
+    }
+
+    .cover__palette {
+      display: flex;
+      gap: 4mm;
+      justify-content: center;
+      margin-bottom: 10mm;
+    }
+
+    .cover__swatch {
+      width: 12mm;
+      height: 12mm;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,0,0,0.1);
+    }
+
+    .cover__tagline {
+      font-size: 11pt;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .cover__bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 6mm;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+    }
+
+    .cover__meta-label {
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 0.5mm;
+    }
+
+    .cover__meta-value {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ===== SECTION HEADINGS ===== */
+    .section-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 18pt;
+      font-weight: 800;
+      color: var(--teal);
+      margin-bottom: 4mm;
+      padding-bottom: 2.5mm;
+      border-bottom: 2px solid var(--cream);
+    }
+
+    .section-subtitle {
+      font-family: 'Nunito', sans-serif;
+      font-size: 12pt;
+      font-weight: 700;
+      color: var(--dark-teal);
+      margin: 5mm 0 2.5mm;
+    }
+
+    p {
+      font-size: 10pt;
+      color: #333;
+      margin-bottom: 3mm;
+      text-align: justify;
+    }
+
+    /* ===== TABLE ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-bottom: 5mm;
+    }
+
+    th {
+      background: var(--teal);
+      color: #fff;
+      font-weight: 700;
+      text-align: left;
+      padding: 2.5mm 3mm;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      padding: 2mm 3mm;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: var(--light); }
+
+    /* ===== COLOUR SWATCHES ===== */
+    .swatch {
+      display: inline-block;
+      width: 5mm;
+      height: 5mm;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 2mm;
+      border: 1px solid rgba(0,0,0,0.12);
+      flex-shrink: 0;
+    }
+
+    .colour-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3mm;
+      margin-bottom: 5mm;
+    }
+
+    .colour-card {
+      border: 1px solid var(--border);
+      border-radius: 2mm;
+      overflow: hidden;
+    }
+
+    .colour-card__strip {
+      height: 14mm;
+    }
+
+    .colour-card__info {
+      padding: 2mm 2.5mm;
+    }
+
+    .colour-card__hex {
+      font-family: 'Courier New', monospace;
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.5mm;
+    }
+
+    .colour-card__name {
+      font-size: 8pt;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.5mm;
+    }
+
+    .colour-card__use {
+      font-size: 7.5pt;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    /* ===== FONT DISPLAY ===== */
+    .font-block {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--teal);
+      border-radius: 2mm;
+      padding: 4mm 5mm;
+      margin-bottom: 4mm;
+    }
+
+    .font-block__name {
+      font-family: 'Nunito', sans-serif;
+      font-size: 18pt;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1.2;
+      margin-bottom: 1mm;
+    }
+
+    .font-block__weights {
+      font-size: 8.5pt;
+      color: var(--muted);
+      margin-bottom: 3mm;
+    }
+
+    .font-block__sample {
+      font-size: 10pt;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ===== WEIGHT SHOWCASE ===== */
+    .weight-row {
+      display: flex;
+      align-items: baseline;
+      gap: 3mm;
+      padding: 1.5mm 0;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Nunito', sans-serif;
+      font-size: 11pt;
+      color: var(--text);
+    }
+
+    .weight-row:last-child { border-bottom: none; }
+
+    .weight-label {
+      font-size: 7.5pt;
+      color: var(--muted);
+      width: 22mm;
+      flex-shrink: 0;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ===== PAGE LIST ===== */
+    .page-list {
+      list-style: none;
+      margin-bottom: 5mm;
+    }
+
+    .page-list li {
+      display: flex;
+      gap: 3mm;
+      padding: 2mm 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 9.5pt;
+      align-items: flex-start;
+    }
+
+    .page-list li:last-child { border-bottom: none; }
+
+    .page-list__path {
+      font-family: 'Courier New', monospace;
+      font-size: 8.5pt;
+      background: var(--light);
+      color: var(--teal);
+      padding: 0.5mm 1.5mm;
+      border-radius: 1mm;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      font-weight: 700;
+      margin-top: 0.3mm;
+    }
+
+    .page-list__desc { flex: 1; color: #333; }
+    .page-list__desc strong { color: var(--text); font-weight: 700; }
+
+    /* ===== TECH PILLS ===== */
+    .tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2mm;
+      margin-bottom: 4mm;
+    }
+
+    .tech-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5mm;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 10mm;
+      padding: 1mm 3mm;
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: var(--dark-teal);
+    }
+
+    /* ===== HIGHLIGHT BOX ===== */
+    .highlight {
+      background: linear-gradient(135deg, rgba(109,134,130,0.08), rgba(136,153,110,0.08));
+      border: 1px solid rgba(109,134,130,0.25);
+      border-left: 4px solid var(--teal);
+      border-radius: 2mm;
+      padding: 4mm 5mm;
+      margin: 4mm 0;
+      font-size: 9.5pt;
+      font-style: italic;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    .highlight cite {
+      display: block;
+      margin-top: 2mm;
+      font-size: 8.5pt;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    /* ===== SPACER ===== */
+    .mt { margin-top: 5mm; }
+    .mt-sm { margin-top: 3mm; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PAGE 1: COVER -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+
+    <div class="cover__top">
+      <p class="cover__university">Varna Free University</p>
+      <p class="cover__course">Department of Computer Science &nbsp;·&nbsp; Web Technologies</p>
+    </div>
+
+    <div class="cover__hero">
+      <div class="cover__dice">🎲</div>
+      <h1 class="cover__title">Pondice</h1>
+      <p class="cover__subtitle">Roll &nbsp;·&nbsp; Hold &nbsp;·&nbsp; Win</p>
+
+      <div class="cover__palette">
+        <div class="cover__swatch" style="background:#6D8682;"></div>
+        <div class="cover__swatch" style="background:#88996E;"></div>
+        <div class="cover__swatch" style="background:#BDD19E;"></div>
+        <div class="cover__swatch" style="background:#B1C9CA;"></div>
+        <div class="cover__swatch" style="background:#E4D2C0;"></div>
+        <div class="cover__swatch" style="background:#B89068;"></div>
+      </div>
+
+      <p class="cover__tagline">"Technology that brings people together, encourages learning,<br />and creates enjoyable experiences for all ages."</p>
+    </div>
+
+    <div class="cover__bottom">
+      <div>
+        <p class="cover__meta-label">Developed By</p>
+        <p class="cover__meta-value">Henry Ponda</p>
+      </div>
+      <div>
+        <p class="cover__meta-label">Course</p>
+        <p class="cover__meta-value">Web Technologies</p>
+      </div>
+      <div>
+        <p class="cover__meta-label">Supervised By</p>
+        <p class="cover__meta-value">Prof. Boyka Gradinarova<br />Assist. Madlen Stoycheva</p>
+      </div>
+      <div>
+        <p class="cover__meta-label">Technologies</p>
+        <p class="cover__meta-value">HTML5 &nbsp;·&nbsp; CSS3 &nbsp;·&nbsp; JavaScript</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PAGE 2: PROJECT OVERVIEW -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <h2 class="section-title">1. Project Overview</h2>
+
+  <h3 class="section-subtitle">What is Pondice?</h3>
+  <p>Pondice is an interactive, browser-based two-player dice game developed as a final project for the course <strong>Web Technologies</strong> at Varna Free University, under the supervision of Prof. Boyka Gradinarova and Assist. Madlen Stoycheva.</p>
+
+  <p>The name <strong>Pondice</strong> is a personal combination of the developer's surname <em>Ponda</em> and the word <em>dice</em> — forming a unique brand identity that ties the creator to the project.</p>
+
+  <div class="highlight">
+    "More than just a course requirement, Pondice was inspired by my family. My grandmother once mentioned that she wanted a fun way to improve her confidence with numbers while becoming more comfortable with technology. Wanting to create something meaningful, I designed this game so she and my niece could enjoy playing together on an iPad."
+    <cite>— Henry Ponda, Developer</cite>
+  </div>
+
+  <h3 class="section-subtitle">Game Concept</h3>
+  <p>Pondice is a digital adaptation of the classic <em>Pig Dice</em> game. Two players take turns rolling a single die, accumulating points each turn. A player can choose to <strong>Hold</strong> at any time to bank their current turn score — but rolling a <strong>1</strong> wipes out all unbanked points and passes the turn to the opponent. The first player to reach the chosen target score (25, 50, or 100 points) wins.</p>
+  <p>The game rewards both risk-taking and strategic thinking, making it accessible for all ages while remaining engaging for experienced players.</p>
+
+  <h3 class="section-subtitle">Project Scope</h3>
+  <p>The project grew beyond a single game page into a complete multi-page web application consisting of nine pages, a shared component system, persistent data storage, sound effects, background music, a leaderboard, statistics tracking, and full mobile responsiveness.</p>
+
+  <div class="mt-sm">
+    <ul class="page-list">
+      <li><span class="page-list__path">/</span><span class="page-list__desc"><strong>Home</strong> — Landing page with hero, feature highlights, and live statistics strip</span></li>
+      <li><span class="page-list__path">/game/</span><span class="page-list__desc"><strong>Play</strong> — The game board: avatar selection, game setup modal, dice, score tracking</span></li>
+      <li><span class="page-list__path">/rules/</span><span class="page-list__desc"><strong>How To Play</strong> — Rules, example turn walkthrough, target score options</span></li>
+      <li><span class="page-list__path">/project/</span><span class="page-list__desc"><strong>The Project</strong> — Background, inspiration, course context, name origin</span></li>
+      <li><span class="page-list__path">/about/</span><span class="page-list__desc"><strong>The Developer</strong> — Henry Ponda's biography, affiliations, and education</span></li>
+      <li><span class="page-list__path">/contact/</span><span class="page-list__desc"><strong>Contact</strong> — Validated feedback form with animated success state</span></li>
+      <li><span class="page-list__path">/statistics/</span><span class="page-list__desc"><strong>Statistics</strong> — Dashboard with CSS bar chart, win table, and game history</span></li>
+      <li><span class="page-list__path">/leaderboard/</span><span class="page-list__desc"><strong>Leaderboard</strong> — Trophy podium and full all-time rankings table</span></li>
+      <li><span class="page-list__path">/settings/</span><span class="page-list__desc"><strong>Settings</strong> — Target score, sound, music, theme — all saved to localStorage</span></li>
+    </ul>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PAGE 3: TECHNOLOGY -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <h2 class="section-title">2. Choice of Technology</h2>
+
+  <p>The project was built exclusively with the three foundational web technologies — <strong>HTML5, CSS3, and JavaScript</strong> — without any frontend frameworks. This was a deliberate decision to demonstrate a thorough command of the core standards, rather than relying on abstractions.</p>
+
+  <div class="tech-row mt-sm">
+    <span class="tech-pill">🌐 HTML5</span>
+    <span class="tech-pill">🎨 CSS3</span>
+    <span class="tech-pill">⚡ JavaScript (ES6+)</span>
+    <span class="tech-pill">💾 localStorage API</span>
+    <span class="tech-pill">🔊 Web Audio API</span>
+    <span class="tech-pill">🎉 canvas-confetti (CDN)</span>
+    <span class="tech-pill">🔡 Google Fonts</span>
+  </div>
+
+  <h3 class="section-subtitle">HTML5</h3>
+  <p>HTML5 provides the structural foundation across all nine pages. Each page lives in its own subfolder (e.g., <code>/game/index.html</code>) for clean, readable URLs. The markup uses semantic elements throughout — <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code> — which improves accessibility and search engine readability. ARIA attributes (<code>aria-label</code>, <code>aria-current</code>, <code>aria-haspopup</code>) are applied to all interactive navigation elements. HTML5 native form validation (<code>required</code>, <code>type="email"</code>, <code>minlength</code>) protects the contact form without JavaScript. Full SEO metadata — Open Graph tags, Twitter Card tags, canonical URLs, and JSON-LD structured data — is included on every page.</p>
+
+  <h3 class="section-subtitle">CSS3</h3>
+  <p><strong>CSS Custom Properties</strong> (variables) power the entire dual-theme system. All colours are defined in a single <code>:root</code> block and overridden in a <code>[data-theme='dark']</code> block — switching themes requires only toggling one HTML attribute. <strong>Flexbox and CSS Grid</strong> handle all layout, including the three-column game board, the responsive navigation, the podium display, and the statistics bar chart. <strong>CSS <code>@keyframes</code></strong> animate the dice shake, modal entrance, roll log fade-in, and the homepage dice spin. <strong>Glassmorphism</strong> — combining <code>rgba</code> transparency with <code>backdrop-filter: blur()</code> — creates the frosted-glass card effect. <strong>CSS <code>clamp()</code></strong> enables fluid typography that scales proportionally between mobile and desktop. The mobile hamburger menu is implemented in pure CSS using a hidden checkbox and sibling combinator selectors — no JavaScript required. Navigation dropdowns use <code>:hover</code> and <code>:focus-within</code> for keyboard accessibility.</p>
+
+  <h3 class="section-subtitle">JavaScript</h3>
+  <p>All game logic, UI interaction, and data management is written in vanilla JavaScript (ES6+). The <strong>Web Audio API</strong> generates all sound effects (dice roll ticks, loss buzz, win chime) using <code>OscillatorNode</code> and <code>GainNode</code> — no audio files are required. A dedicated <strong>music manager module</strong> handles two background tracks that cross-fade over 0.8 seconds using <code>HTMLAudioElement</code>, with a synthesised ambient fallback generated entirely in code when files are absent. The <strong>localStorage API</strong> persists four data categories: game statistics, leaderboard rankings, game settings, and theme preference — all surviving page refreshes and browser restarts. <strong>Animated dice rolling</strong> uses <code>setInterval</code> to cycle through dice faces before landing on the final result, with a CSS shake animation triggered at the moment of reveal. The <strong>confetti celebration</strong> on a win uses the <code>canvas-confetti</code> library loaded via CDN.</p>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PAGE 4: FUNCTIONALITY -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <h2 class="section-title">3. Key Functionality</h2>
+
+  <h3 class="section-subtitle">Game Mechanics</h3>
+  <p>Players set their name (up to 12 characters), select an emoji avatar from eight options, and choose a target score before each game. On their turn, a player clicks <em>Roll Dice</em> — the die animates through several random faces before landing on the final result (1–6). Scores accumulate until the player clicks <em>Hold</em> to bank them, or rolls a 1 and loses the turn's unbanked points. The first player to reach or exceed the target wins, triggering a confetti animation, a three-note victory chime, and an automatic leaderboard update. Keyboard shortcuts (R / H / N) allow full play without a mouse.</p>
+
+  <h3 class="section-subtitle">Data Persistence</h3>
+  <p>All data is stored in the browser's <code>localStorage</code>, meaning statistics and rankings build up over multiple sessions without any server or database. The Statistics page displays a pure CSS animated bar chart of wins per player. The Leaderboard renders a trophy podium for the top three players, followed by a complete win-rate table for all players ever recorded.</p>
+
+  <h3 class="section-subtitle">Responsive Design</h3>
+  <p>The site is fully responsive across mobile, tablet, and desktop. Below 600px, the three-column game board stacks vertically, the navigation collapses into a hamburger menu, and all font sizes and button heights adapt automatically. The hamburger animation — bars rotating into an × — is achieved purely with CSS transitions and no JavaScript.</p>
+
+  <h3 class="section-subtitle">Accessibility & SEO</h3>
+  <p>ARIA labels, <code>aria-current</code> indicators, and keyboard-navigable dropdowns are applied throughout. Every page includes a unique meta description, Open Graph and Twitter Card tags for social sharing, and a JSON-LD structured data block on the homepage identifying the site as a free web game application for search engines.</p>
+
+  <h3 class="section-subtitle">Audio System</h3>
+  <p>Sound effects (roll, lose turn, win, click) are synthesised using the Web Audio API — no audio files required. Background music cross-fades between a calm ambient track during the setup phase and a more energetic track during active gameplay. Both the sound effects and background music have independent toggles in Settings, and a 🎵 mute button is available directly in the game navigation.</p>
+
+  <h3 class="section-subtitle">Dark Mode</h3>
+  <p>A full dark theme is available on every page. The colour scheme shifts from the teal-to-olive earth-tone gradient to a deep forest-green gradient, with card backgrounds changing from near-white glass to near-black glass. The preference is saved to <code>localStorage</code> and restored on every page load.</p>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PAGE 5: DESIGN — FONTS & COLOURS -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <h2 class="section-title">4. Design — Typography &amp; Colour</h2>
+
+  <h3 class="section-subtitle">Typography</h3>
+
+  <div class="font-block no-break">
+    <p class="font-block__name">Nunito</p>
+    <p class="font-block__weights">Google Fonts &nbsp;·&nbsp; Weights used: 300 · 400 · 600 · 700 · 800</p>
+    <p class="font-block__sample">The quick brown fox jumps over the lazy dog. 0123456789</p>
+  </div>
+
+  <div style="background:var(--light); border:1px solid var(--border); border-radius:2mm; padding:3mm 4mm; margin-bottom:5mm;">
+    <div class="weight-row"><span class="weight-label">300 Light</span><span style="font-weight:300; font-family:'Nunito',sans-serif;">Player scores and large display numbers</span></div>
+    <div class="weight-row"><span class="weight-label">400 Regular</span><span style="font-weight:400; font-family:'Nunito',sans-serif;">Body text, descriptions, paragraphs</span></div>
+    <div class="weight-row"><span class="weight-label">600 SemiBold</span><span style="font-weight:600; font-family:'Nunito',sans-serif;">Navigation links, form labels, tags</span></div>
+    <div class="weight-row"><span class="weight-label">700 Bold</span><span style="font-weight:700; font-family:'Nunito',sans-serif;">Card titles, buttons, subheadings</span></div>
+    <div class="weight-row"><span class="weight-label">800 ExtraBold</span><span style="font-weight:800; font-family:'Nunito',sans-serif;">Page titles, hero text, stat values</span></div>
+  </div>
+
+  <h3 class="section-subtitle">Colour Palette — "Paradise on Earth"</h3>
+
+  <div class="colour-grid">
+    <div class="colour-card no-break">
+      <div class="colour-card__strip" style="background:#6D8682;"></div>
+      <div class="colour-card__info">
+        <span class="colour-card__hex">#6D8682</span>
+        <span class="colour-card__name">Muted Teal</span>
+        <span class="colour-card__use">Background gradient start</span>
+      </div>
+    </div>
+    <div class="colour-card no-break">
+      <div class="colour-card__strip" style="background:#88996E;"></div>
+      <div class="colour-card__info">
+        <span class="colour-card__hex">#88996E</span>
+        <span class="colour-card__name">Olive Green</span>
+        <span class="colour-card__use">Background gradient end</span>
+      </div>
+    </div>
+    <div class="colour-card no-break">
+      <div class="colour-card__strip" style="background:#BDD19E;"></div>
+      <div class="colour-card__info">
+        <span class="colour-card__hex">#BDD19E</span>
+        <span class="colour-card__name">Light Sage</span>
+        <span class="colour-card__use">Palette reference</span>
+      </div>
+    </div>
+    <div class="colour-card no-break">
+      <div class="colour-card__strip" style="background:#B1C9CA;"></div>
+      <div class="colour-card__info">
+        <span class="colour-card__hex">#B1C9CA</span>
+        <span class="colour-card__name">Powder Blue</span>
+        <span class="colour-card__use">Palette reference</span>
+      </div>
+    </div>
+    <div class="colour-card no-break">
+      <div class="colour-card__strip" style="background:#E4D2C0;"></div>
+      <div class="colour-card__info">
+        <span class="colour-card__hex">#E4D2C0</span>
+        <span class="colour-card__name">Cream Beige</span>
+        <span class="colour-card__use">Palette reference</span>
+      </div>
+    </div>
+    <div class="colour-card no-break">
+      <div class="colour-card__strip" style="background:#B89068;"></div>
+      <div class="colour-card__info">
+        <span class="colour-card__hex">#B89068</span>
+        <span class="colour-card__name">Warm Brown</span>
+        <span class="colour-card__use">Primary accent colour</span>
+      </div>
+    </div>
+  </div>
+
+  <table class="mt-sm no-break">
+    <thead>
+      <tr><th>Hex Code</th><th>Name</th><th>Usage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="swatch" style="background:#B89068;"></span><code>#B89068</code></td><td>Warm Brown</td><td>Buttons, scores, links, focus rings</td></tr>
+      <tr><td><span class="swatch" style="background:#9a7555;"></span><code>#9a7555</code></td><td>Dark Brown</td><td>Hover / active state for accent</td></tr>
+      <tr><td><span class="swatch" style="background:#2d4a47;"></span><code>#2d4a47</code></td><td>Deep Teal</td><td>Dark mode gradient start</td></tr>
+      <tr><td><span class="swatch" style="background:#3a4a30;"></span><code>#3a4a30</code></td><td>Deep Olive</td><td>Dark mode gradient end</td></tr>
+      <tr><td><span class="swatch" style="background:#2ecc71;"></span><code>#2ecc71</code></td><td>Emerald</td><td>Success / saved toast</td></tr>
+      <tr><td><span class="swatch" style="background:#e74c3c;"></span><code>#e74c3c</code></td><td>Crimson</td><td>Danger / reset buttons</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+</body>
+</html>
