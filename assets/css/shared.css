@@ -523,6 +523,18 @@ button { cursor: pointer; font-family: inherit; }
   margin-top: auto;
 }
 
+.footer__link {
+  color: inherit;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.footer__link:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
 /* ===== STAT CARD ===== */
 .stat-card {
   background: var(--card-bg);
